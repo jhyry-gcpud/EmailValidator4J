@@ -1,28 +1,25 @@
-
 plugins {
-    id "com.jfrog.bintray" version "1.7"
+    id 'com.github.spotbugs' version '4.7.1' apply false
+    id 'java-library'
+    id 'maven-publish'
+    id 'eclipse'
 }
-
-apply plugin: 'java'
-apply plugin: 'idea'
-apply plugin: 'com.jfrog.bintray'
-apply plugin: 'maven'
 
 version = '1.0.4'
 
-repositories {
-    mavenCentral()
-    jcenter()
-}
+apply from: "$projectDir/gradle/spotbugs.gradle"
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
-    testCompile group: 'com.tngtech.java', name: 'junit-dataprovider', version: '1.9.2'
-    testCompile "org.mockito:mockito-core:1.+"
+    spotbugsPlugins 'com.mebigfatguy.sb-contrib:sb-contrib:7.4.7'
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.11.0'
+
+    testImplementation group: 'junit', name: 'junit', version: '4.11'
+    testImplementation group: 'com.tngtech.java', name: 'junit-dataprovider', version: '1.9.2'
+    testImplementation "org.mockito:mockito-core:1.+"
 }
 
-def siteUrl = 'https://github.com/egulias/EmailValidator4J'
-def gitUrl = 'https://github.com/egulias/EmailValidator4J.git'
+def siteUrl = 'https://github.com/jhyry-gcpud/EmailValidator4J'
+def gitUrl = 'https://github.com/jhyry-gcpud/EmailValidator4J.git'
 group = "com.egulias"
 
 
@@ -61,31 +58,9 @@ task createPom {
     }
 }
 
-bintray {
-    user = getProperty("bintray.user", "anon")
-    key = getProperty("bintray.apikey", "anon")
-
-    configurations = ['archives']
-    pkg {
-        repo = "maven"
-        name = "EmailValidator4J"
-        websiteUrl = siteUrl
-        vcsUrl = gitUrl
-        licenses = ["MIT"]
-        labels = ['email', 'validator', 'email validation']
-        issueTrackerUrl = 'https://github.com/egulias/EmailValidator4J/issues'
-        publish = true
-        version {
-            name = '1.0.4' //Bintray logical version name
-            desc = 'Improved exception control and more invalid emails handled'
-            vcsTag = '1.0.4'
-        }
-    }
-}
-
-task sourceJar(type: Jar) {
-    from sourceSets.main.allJava
-    classifier 'sources'
+task sourcesJar(type: Jar, dependsOn: classes) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
 }
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
@@ -95,5 +70,15 @@ task javadocJar(type: Jar, dependsOn: javadoc) {
 
 artifacts {
     archives javadocJar
-    archives sourceJar
+    archives sourcesJar
+}
+
+eclipse {
+    project {
+        natures 'edu.umd.cs.findbugs.plugin.eclipse.findbugsNature'
+        buildCommand 'edu.umd.cs.findbugs.plugin.eclipse.findbugsBuilder'
+    }
+
+    classpath.downloadJavadoc = true
+    classpath.downloadSources = true
 }
