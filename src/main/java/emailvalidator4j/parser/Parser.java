@@ -1,13 +1,22 @@
 package emailvalidator4j.parser;
 
-import emailvalidator4j.lexer.EmailLexer;
-import emailvalidator4j.lexer.TokenInterface;
-import emailvalidator4j.lexer.Tokens;
-import emailvalidator4j.parser.exception.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import emailvalidator4j.lexer.EmailLexer;
+import emailvalidator4j.lexer.TokenInterface;
+import emailvalidator4j.lexer.Tokens;
+import emailvalidator4j.parser.exception.ATEXTAfterCFWS;
+import emailvalidator4j.parser.exception.ATEXTAfterComment;
+import emailvalidator4j.parser.exception.CRLFAtEnd;
+import emailvalidator4j.parser.exception.CRWithoutLF;
+import emailvalidator4j.parser.exception.ConsecutiveCRLF;
+import emailvalidator4j.parser.exception.ConsecutiveDots;
+import emailvalidator4j.parser.exception.ExpectedCTEXT;
+import emailvalidator4j.parser.exception.InvalidEmail;
+import emailvalidator4j.parser.exception.UnclosedComment;
+import emailvalidator4j.parser.exception.UnclosedDQUOTE;
 
 abstract class Parser {
     protected List<Warnings> warnings = new ArrayList<Warnings>();

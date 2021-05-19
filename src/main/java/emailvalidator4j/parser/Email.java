@@ -1,16 +1,13 @@
 package emailvalidator4j.parser;
 
+import java.util.List;
+import java.util.Optional;
+
 import emailvalidator4j.lexer.EmailLexer;
 import emailvalidator4j.lexer.Tokens;
-import emailvalidator4j.parser.exception.DomainHyphen;
 import emailvalidator4j.parser.exception.InvalidCharacters;
 import emailvalidator4j.parser.exception.InvalidEmail;
 import emailvalidator4j.parser.exception.NoLocalPart;
-
-import javax.swing.text.html.Option;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 public class Email {
     private final EmailLexer lexer;

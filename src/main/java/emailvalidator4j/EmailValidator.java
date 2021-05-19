@@ -1,11 +1,11 @@
 package emailvalidator4j;
 
+import java.util.Collections;
+import java.util.List;
+
 import emailvalidator4j.lexer.EmailLexer;
 import emailvalidator4j.parser.Email;
 import emailvalidator4j.parser.exception.InvalidEmail;
-
-import java.util.Collections;
-import java.util.List;
 
 public final class EmailValidator {
     private final Email parser = new Email(new EmailLexer());

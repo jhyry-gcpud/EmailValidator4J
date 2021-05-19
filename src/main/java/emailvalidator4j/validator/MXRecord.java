@@ -1,7 +1,8 @@
 package emailvalidator4j.validator;
 
-import emailvalidator4j.ValidationStrategy;
-import emailvalidator4j.parser.Email;
+import java.util.Hashtable;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.naming.Context;
 import javax.naming.NamingEnumeration;
@@ -10,9 +11,9 @@ import javax.naming.directory.Attributes;
 import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
-import java.util.Hashtable;
-import java.util.Set;
-import java.util.TreeSet;
+
+import emailvalidator4j.ValidationStrategy;
+import emailvalidator4j.parser.Email;
 
 public class MXRecord implements ValidationStrategy {
 

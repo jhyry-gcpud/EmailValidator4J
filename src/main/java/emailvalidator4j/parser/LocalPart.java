@@ -1,14 +1,18 @@
 package emailvalidator4j.parser;
 
-import emailvalidator4j.lexer.EmailLexer;
-import emailvalidator4j.lexer.Token;
-import emailvalidator4j.lexer.TokenInterface;
-import emailvalidator4j.lexer.Tokens;
-import emailvalidator4j.parser.exception.*;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import emailvalidator4j.lexer.EmailLexer;
+import emailvalidator4j.lexer.TokenInterface;
+import emailvalidator4j.lexer.Tokens;
+import emailvalidator4j.parser.exception.DotAtEnd;
+import emailvalidator4j.parser.exception.DotAtStart;
+import emailvalidator4j.parser.exception.ExpectedAT;
+import emailvalidator4j.parser.exception.ExpectedATEXT;
+import emailvalidator4j.parser.exception.InvalidEmail;
+import emailvalidator4j.parser.exception.UnclosedComment;
 
 final class LocalPart extends Parser {
     private boolean closingQuote = false;

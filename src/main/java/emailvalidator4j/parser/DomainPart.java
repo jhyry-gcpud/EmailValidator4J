@@ -1,14 +1,26 @@
 package emailvalidator4j.parser;
 
+import java.util.HashSet;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import emailvalidator4j.lexer.EmailLexer;
 import emailvalidator4j.lexer.Token;
 import emailvalidator4j.lexer.TokenInterface;
 import emailvalidator4j.lexer.Tokens;
-import emailvalidator4j.parser.exception.*;
-
-import java.util.HashSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import emailvalidator4j.parser.exception.CRLFAtEnd;
+import emailvalidator4j.parser.exception.ConsecutiveAT;
+import emailvalidator4j.parser.exception.ConsecutiveGeneric;
+import emailvalidator4j.parser.exception.DomainHyphen;
+import emailvalidator4j.parser.exception.DomainNotAllowedCharacter;
+import emailvalidator4j.parser.exception.DotAtEnd;
+import emailvalidator4j.parser.exception.DotAtStart;
+import emailvalidator4j.parser.exception.ExpectedAT;
+import emailvalidator4j.parser.exception.ExpectedATEXT;
+import emailvalidator4j.parser.exception.ExpectedDTEXT;
+import emailvalidator4j.parser.exception.InvalidEmail;
+import emailvalidator4j.parser.exception.UnclosedComment;
+import emailvalidator4j.parser.exception.UnclosedDomainLiteral;
 
 final class DomainPart extends Parser {
 

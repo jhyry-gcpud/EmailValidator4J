@@ -1,11 +1,12 @@
 package emailvalidator4j.lexer;
 
-import emailvalidator4j.lexer.exception.TokenNotFound;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import emailvalidator4j.lexer.exception.TokenNotFound;
 
 public class EmailLexer {
     private boolean invalidTokens = false;

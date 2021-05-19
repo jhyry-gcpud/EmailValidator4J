@@ -1,7 +1,6 @@
 package emailvalidator4j.lexer;
 
 import java.util.HashMap;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public enum Tokens implements TokenInterface {
