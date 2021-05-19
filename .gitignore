@@ -1,6 +1,5 @@
-build
-*.ipr
-*.iws
-*.iml
-.gradle
-out/
+bin/*
+build/*
+.gradle/*
+.classpath
+.project
